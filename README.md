@@ -1,5 +1,5 @@
 # large_xml_parser
-A large xml file parser
+A large xml file parser in python 3
 
 ## Assumptions:
 1) The XML file is always very big in size.
