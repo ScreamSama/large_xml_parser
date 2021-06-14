@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BizData xmlns="urn:iso:std:iso:20022:tech:xsd:head.003.001.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:head.003.001.01 head.003.001.01.xsd">
+   <Hdr>
+      <AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.01" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:head.001.001.01 head.001.001.01_ESMAUG_1.0.0.xsd">
+         <Fr>
+            <OrgId>
+               <Id>
+                  <OrgId>
+                     <Othr>
+                        <Id>EU</Id>
+                     </Othr>
+                  </OrgId>
+               </Id>
+            </OrgId>
+         </Fr>
+         <To>
+            <OrgId>
+               <Id>
+                  <OrgId>
+                     <Othr>
+                        <Id>Public</Id>
+                     </Othr>
+                  </OrgId>
+               </Id>
+            </OrgId>
+         </To>
+         <BizMsgIdr>DLTINS_20210117_01of01</BizMsgIdr>
+         <MsgDefIdr>auth.036.001.02</MsgDefIdr>
+         <CreDt>2021-01-17T01:17:07.027Z</CreDt>
+      </AppHdr>
+   </Hdr>
+   <Pyld>
+      <Document xmlns="urn:iso:std:iso:20022:tech:xsd:auth.036.001.02" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.036.001.02 auth.036.001.02_ESMAUG_DLTINS_1.1.0.xsd">
+         <FinInstrmRptgRefDataDltaRpt>
+            <RptHdr>
+               <RptgNtty>
+                  <NtlCmptntAuthrty>EU</NtlCmptntAuthrty>
+               </RptgNtty>
+               <RptgPrd>
+                  <Dt>2021-01-17</Dt>
+               </RptgPrd>
+            </RptHdr>
+            <FinInstrm>
+               <TermntdRcrd>
+                 
+               </TermntdRcrd>
+            </FinInstrm>
+         </FinInstrmRptgRefDataDltaRpt>
+      </Document>
+   </Pyld>
+</BizData>
