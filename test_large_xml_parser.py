@@ -12,6 +12,7 @@ TEST_CSV_FILE_NAME = './test_files/test.csv'
 WRONG_ELEMENT_XML_FILE = './test_files/wrong.xml'
 AWS_STORAGE_BUCKET_NAME = "st-data-lake"
 
+
 class ParserTest(unittest.TestCase):
 
     """
@@ -24,13 +25,27 @@ class ParserTest(unittest.TestCase):
             Setup objects and dummy data for test cases
         """
         # LargeXmlParser object with different parameters
-        self.xml_parser = LargeXmlParser('./test_files/test_csv',XML_FILE)
-        self.xml_parser2 = LargeXmlParser('./test_files/test_csv',XML_FILE2)
-        self.wrong_xml_parser = LargeXmlParser('./test_files/test_csv',WRONG_ELEMENT_XML_FILE)
+        self.xml_parser = LargeXmlParser('./test_files/test_csv', XML_FILE)
+        self.xml_parser2 = LargeXmlParser('./test_files/test_csv', XML_FILE2)
+        self.wrong_xml_parser = LargeXmlParser('./test_files/test_csv',
+                                                 WRONG_ELEMENT_XML_FILE)
 
         # Dummy Dictionary Values
-        self.test_dict = {'FinInstrmGnlAttrbts.Id': 'DE000A1R07V3', 'FinInstrmGnlAttrbts.ClssfctnTp': 'DBFTFB', 'FinInstrmGnlAttrbts.CmmdtyDerivInd': 'false', 'FinInstrmGnlAttrbts.FullNm': 'Kreditanst.f.Wiederaufbau     Anl.v.2014 (2021)', 'FinInstrmGnlAttrbts.NtnlCcy': 'EUR', 'Issr': '549300GDPG70E3MBBU98'}
-        self.wrong_dict = {'WrongField.Id': 'DE000A1R07V3', 'FinInstrmGnlAttrbts.ClssfctnTp': 'DBFTFB', 'FinInstrmGnlAttrbts.CmmdtyDerivInd': 'false', 'FinInstrmGnlAttrbts.FullNm': 'Kreditanst.f.Wiederaufbau     Anl.v.2014 (2021)', 'FinInstrmGnlAttrbts.NtnlCcy': 'EUR', 'Issr': '549300GDPG70E3MBBU98'}
+        self.test_dict = {
+            'FinInstrmGnlAttrbts.Id': 'DE000A1R07V3',
+            'FinInstrmGnlAttrbts.ClssfctnTp': 'DBFTFB',
+            'FinInstrmGnlAttrbts.CmmdtyDerivInd': 'false',
+            'FinInstrmGnlAttrbts.FullNm': 'Kreditanst.f.Wiederaufbau     Anl.v.2014 (2021)',
+            'FinInstrmGnlAttrbts.NtnlCcy': 'EUR',
+            'Issr': '549300GDPG70E3MBBU98'
+         }
+        self.wrong_dict = {
+            'WrongField.Id': 'DE000A1R07V3',
+            'FinInstrmGnlAttrbts.ClssfctnTp': 'DBFTFB',
+            'FinInstrmGnlAttrbts.CmmdtyDerivInd': 'false',
+            'FinInstrmGnlAttrbts.FullNm': 'Kreditanst.f.Wiederaufbau     Anl.v.2014 (2021)',
+            'FinInstrmGnlAttrbts.NtnlCcy': 'EUR', 'Issr': '549300GDPG70E3MBBU98'
+        }
 
     def tearDown(self):
 
@@ -47,10 +62,10 @@ class ParserTest(unittest.TestCase):
         """
 
         elements_parsed, row_count, sample_dic = self.xml_parser.parse_xml()
-        self.assertEqual(elements_parsed,100)
-        self.assertEqual(row_count,1)
-        self.assertIs(type(sample_dic),type(self.test_dict))
-        self.assertEqual(len(sample_dic),len(self.test_dict))
+        self.assertEqual(elements_parsed, 100)
+        self.assertEqual(row_count, 1)
+        self.assertIs(type(sample_dic), type(self.test_dict))
+        self.assertEqual(len(sample_dic), len(self.test_dict))
 
     def test_parse_xml_returned_dict_fields(self):
 
@@ -61,9 +76,12 @@ class ParserTest(unittest.TestCase):
         elements_parsed, row_count, sample_dic = self.xml_parser.parse_xml()
 
         for key in sample_dic.keys():
-            self.assertIn(key,['FinInstrmGnlAttrbts.Id', 'FinInstrmGnlAttrbts.FullNm', 
-            'FinInstrmGnlAttrbts.ClssfctnTp', 'FinInstrmGnlAttrbts.CmmdtyDerivInd',
-            'FinInstrmGnlAttrbts.NtnlCcy', 'Issr'])
+            self.assertIn(key, [
+                'FinInstrmGnlAttrbts.Id',
+                'FinInstrmGnlAttrbts.FullNm',
+                'FinInstrmGnlAttrbts.ClssfctnTp',
+                'FinInstrmGnlAttrbts.CmmdtyDerivInd',
+                'FinInstrmGnlAttrbts.NtnlCcy', 'Issr'])
 
     def test_parse_xml_raise_excpetion(self):
 
@@ -82,7 +100,7 @@ class ParserTest(unittest.TestCase):
 
         row_data = [self.test_dict]
         result_true = self.xml_parser.write_to_csv(row_data)
-        self.assertEqual(result_true,True)
+        self.assertEqual(result_true, True)
 
     def test_write_to_csv_false(self):
 
@@ -92,7 +110,7 @@ class ParserTest(unittest.TestCase):
 
         row_data = []
         result_false = self.xml_parser.write_to_csv(row_data)
-        self.assertEqual(result_false,False)
+        self.assertEqual(result_false, False)
 
     def test_write_to_csv_exception(self):
 
@@ -103,7 +121,7 @@ class ParserTest(unittest.TestCase):
         row_data = 'Wrong Data'
         with self.assertRaises(Exception) as context:
             result_false = self.xml_parser.write_to_csv(row_data)
-    
+
     @mock_s3
     def test_upload_file_to_s3(self):
 
@@ -115,9 +133,9 @@ class ParserTest(unittest.TestCase):
         # We need to create the bucket since this is all in Moto's 'virtual'    AWS account.
         conn.create_bucket(Bucket=AWS_STORAGE_BUCKET_NAME)
         # Run your function. It should upload file to the above s3 bucket.
-        result = self.xml_parser.upload_file_to_s3(TEST_CSV_FILE_NAME,AWS_STORAGE_BUCKET_NAME)
+        result = self.xml_parser.upload_file_to_s3(TEST_CSV_FILE_NAME, AWS_STORAGE_BUCKET_NAME)
         message = "Test value is not true."
-        self.assertTrue(result,message)
+        self.assertTrue(result, message)
 
     @mock_s3
     def test_upload_file_to_s3_exception(self):
@@ -127,7 +145,7 @@ class ParserTest(unittest.TestCase):
         """
 
         with self.assertRaises(Exception) as context:
-            result = self.xml_parser.upload_file_to_s3(TEST_CSV_FILE_NAME,"test_bucket")
+            result = self.xml_parser.upload_file_to_s3(TEST_CSV_FILE_NAME, "test_bucket")
 
 
 if __name__ == '__main__':
