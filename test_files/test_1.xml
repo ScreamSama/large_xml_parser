@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BizData xmlns="urn:iso:std:iso:20022:tech:xsd:head.003.001.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:head.003.001.01 head.003.001.01.xsd">
+   <Hdr>
+      <AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.01" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:head.001.001.01 head.001.001.01_ESMAUG_1.0.0.xsd">
+         <Fr>
+            <OrgId>
+               <Id>
+                  <OrgId>
+                     <Othr>
+                        <Id>EU</Id>
+                     </Othr>
+                  </OrgId>
+               </Id>
+            </OrgId>
+         </Fr>
+         <To>
+            <OrgId>
+               <Id>
+                  <OrgId>
+                     <Othr>
+                        <Id>Public</Id>
+                     </Othr>
+                  </OrgId>
+               </Id>
+            </OrgId>
+         </To>
+         <BizMsgIdr>DLTINS_20210117_01of01</BizMsgIdr>
+         <MsgDefIdr>auth.036.001.02</MsgDefIdr>
+         <CreDt>2021-01-17T01:17:07.027Z</CreDt>
+      </AppHdr>
+   </Hdr>
+   <Pyld>
+      <Document xmlns="urn:iso:std:iso:20022:tech:xsd:auth.036.001.02" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.036.001.02 auth.036.001.02_ESMAUG_DLTINS_1.1.0.xsd">
+         <FinInstrmRptgRefDataDltaRpt>
+            <RptHdr>
+               <RptgNtty>
+                  <NtlCmptntAuthrty>EU</NtlCmptntAuthrty>
+               </RptgNtty>
+               <RptgPrd>
+                  <Dt>2021-01-17</Dt>
+               </RptgPrd>
+            </RptHdr>
+            <FinInstrm>
+               <TermntdRcrd>
+                  <FinInstrmGnlAttrbts>
+                     <Id>DE000A1R07V3</Id>
+                     <FullNm>Kreditanst.f.Wiederaufbau     Anl.v.2014 (2021)</FullNm>
+                     <ShrtNm>KFW/1.625 ANL 20210115 GGAR</ShrtNm>
+                     <ClssfctnTp>DBFTFB</ClssfctnTp>
+                     <NtnlCcy>EUR</NtnlCcy>
+                     <CmmdtyDerivInd>false</CmmdtyDerivInd>
+                  </FinInstrmGnlAttrbts>
+                  <Issr>549300GDPG70E3MBBU98</Issr>
+                  <TradgVnRltdAttrbts>
+                     <Id>XEUB</Id>
+                     <IssrReq>false</IssrReq>
+                     <FrstTradDt>2014-01-14T09:00:00Z</FrstTradDt>
+                     <TermntnDt>2017-12-15T00:00:00Z</TermntnDt>
+                  </TradgVnRltdAttrbts>
+                  <DebtInstrmAttrbts>
+                     <TtlIssdNmnlAmt Ccy="EUR">5000000000</TtlIssdNmnlAmt>
+                     <MtrtyDt>2021-01-15</MtrtyDt>
+                     <NmnlValPerUnit Ccy="EUR">1000</NmnlValPerUnit>
+                     <IntrstRate>
+                        <Fxd>1.625</Fxd>
+                     </IntrstRate>
+                  </DebtInstrmAttrbts>
+                  <TechAttrbts>
+                     <RlvntCmptntAuthrty>DE</RlvntCmptntAuthrty>
+                     <RlvntTradgVn>MANL</RlvntTradgVn>
+                  </TechAttrbts>
+               </TermntdRcrd>
+            </FinInstrm>
+         </FinInstrmRptgRefDataDltaRpt>
+      </Document>
+   </Pyld>
+</BizData>
